@@ -4,6 +4,7 @@ import 'package:tugas/bloc/weather_bloc.dart';
 import 'package:tugas/bloc/weather_event.dart';
 import 'package:tugas/bloc/weather_state.dart';
 import 'package:tugas/di/injector.dart';
+import 'package:tugas/localization/app_localization.dart';
 import 'package:tugas/page/weather_view.dart';
 
 class Weather extends StatelessWidget {
@@ -11,7 +12,7 @@ class Weather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather Application'),
+        title: Text(AppLocalizations.of(context).translate('app_bar_title')),
       ),
       body: WeatherSub(),
     );
@@ -56,7 +57,7 @@ class _WeatherState extends State<WeatherSub> {
                   _weatherBloc.dispatch(FetchWeather(cityName: this.text));
                 },
                 child: Text(
-                  'Cari',
+                  AppLocalizations.of(context).translate('find_button'),
                   style: TextStyle(color: Colors.lightBlue),
                 ),
               ),
