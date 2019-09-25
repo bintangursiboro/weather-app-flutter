@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas/di/di.dart';
 import 'package:tugas/page/weather.dart';
+import 'package:tugas/permission/permission_handler.dart';
 
 class Init extends StatelessWidget {
   final Widget appBuilder;
@@ -10,6 +11,9 @@ class Init extends StatelessWidget {
   Future init() async {
     final KiwiInject injector = KiwiInject();
     injector.initInjection();
+    AppPermission permission = injector.getAppPermission();
+    print((await permission.locationPermissions)[0]);
+    print((await permission.locationStatus)[0]);
     return true;
   }
 

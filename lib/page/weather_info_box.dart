@@ -16,6 +16,7 @@ class WeatherInfoBox extends StatefulWidget {
 class _WeatherInfoBoxState extends State<WeatherInfoBox> {
   DataWeather dataWeather;
   WeatherSQL weatherSQL;
+  int counter = 0;
   _WeatherInfoBoxState({this.dataWeather, this.weatherSQL});
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _WeatherInfoBoxState extends State<WeatherInfoBox> {
                   children: <Widget>[
                     // showImage(weatherSQL.weather[0].icon),
                     Text("City: " + weatherSQL.name),
-                    Text('Wind: ' + weatherSQL.wind.toString() + ' km/s'),
+                    Text('Wind: ' + weatherSQL.wind.toString() + ' km/h'),
                     Text('Humidity: ' + weatherSQL.humidity.toString() + '%')
                   ],
                 ),
@@ -67,6 +68,7 @@ class _WeatherInfoBoxState extends State<WeatherInfoBox> {
   }
 
   Widget showIfNull() {
+    print(counter++);
     MethodChannel("toast.flutter.io/toast").invokeMethod("showToast");
     return Text('Cuaca kota tidak ditemukan');
   }
